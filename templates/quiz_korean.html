@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>한글 퀴즈</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="{{ url_for('static', filename='js/korean_quiz.js') }}" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h2>아래 문자를 수어로 표현하세요</h2>
+        <div id="target">ㄱ</div>
+        <video id="video" autoplay playsinline></video>
+    </div>
+</body>
+</html>
