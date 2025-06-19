@@ -5,57 +5,76 @@ const letters = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 
 let currentTarget = '';
 let isLocked = false;
 
+// 웹캠 시작
 navigator.mediaDevices.getUserMedia({ video: true })
   .then(stream => video.srcObject = stream);
 
+// 랜덤 문자 설정
 function getRandomLetter() {
   return letters[Math.floor(Math.random() * letters.length)];
 }
+
 function setNewTarget() {
-  targetEl.innerText = getRandomLetter();
+  currentTarget = getRandomLetter();
+  targetEl.innerText = currentTarget;
+  isLocked = false;
 }
-function setNewTarget() {
-     currentTarget = getRandomLetter();
-     targetEl.innerText = currentTarget;
-     isLocked = false;
-  }
 
 setNewTarget();
 
+// 답안 제출
 function submitAnswer() {
-    if (isLocked) return;
+  console.log('📸 submitAnswer() called');
 
-    const canvas = document.createElement('canvas');
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    canvas.getContext('2d').drawImage(video, 0, 0);
-  
-    canvas.toBlob(blob => {
-      const formData = new FormData();
-      formData.append('image', blob, 'capture.jpg');
-      formData.append('target', curretnTarget);
-  
-      fetch('/predict', {
-        method: 'POST',
-        body: formData
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.is_corrext) {
-            video.style.border = '5px solid green';
-            isLocked = true;
+  if (isLocked || video.readyState !== 4) return;
 
-            setTimeout(() => {
-                video.style.border = 'none';
-                setNewTarget();
-            }, 1000);
-        } else {
-            video.style.border = '5px solid red';
-        }
-      });
-    }, 'image/jpeg');
-  }
-  
-  setInterval(() => {
-    submitAnswer();
-  }, 2000);
+  const canvas = document.createElement('canvas');
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext('2d').drawImage(video, 0, 0);
+
+  canvas.toBlob(blob => {
+    const formData = new FormData();
+    formData.append('image', blob, 'capture.jpg');
+    formData.append('target', currentTarget);
+
+    fetch('/predict', {
+      method: 'POST',
+      body: formData
+    })
+    .then(res => {
+      console.log("📥 Response status:", res.status);
+      return res.json();
+    })
+    .then(data => {
+      console.log("📦 Parsed JSON:", data);
+      console.log(`🎯 Target (문제): ${currentTarget}`);
+      console.log(`🤖 Prediction (모델 응답): ${data.prediction}`);
+      console.log(`📊 Confidence: ${data.confidence}`);
+      console.log(`✅ Is Correct?: ${data.is_correct}`);
+
+      if (data.is_correct) {
+        video.style.border = '5px solid green';
+        isLocked = true;
+
+        setTimeout(() => {
+          video.style.border = 'none';
+          setNewTarget();
+        }, 1000);
+      } else {
+        video.style.border = '5px solid red';
+        setTimeout(() => {
+          video.style.border = 'none';
+        }, 800);
+      }
+    })
+    .catch(err => {
+      console.error("❌ 예측 요청 오류:", err);
+    });
+  }, 'image/jpeg');
+}
+
+// 2초마다 자동 제출
+setInterval(() => {
+  submitAnswer();
+}, 2000);
