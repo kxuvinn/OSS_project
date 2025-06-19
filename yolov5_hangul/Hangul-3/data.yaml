@@ -1,0 +1,42 @@
+names:
+- a
+- ae
+- bieup
+- chieut
+- digeut
+- e
+- eo
+- eu
+- giyeok
+- hieut
+- i
+- ieung
+- jieut
+- kieuk
+- mieum
+- nieun
+- o
+- oe
+- pieup
+- rieul
+- siot
+- tieut
+- u
+- ui
+- wi
+- ya
+- yae
+- ye
+- yeo
+- yo
+- yu
+nc: 31
+roboflow:
+  license: CC BY 4.0
+  project: -mwnqh
+  url: https://universe.roboflow.com/oss-4tnzy/-mwnqh/dataset/3
+  version: 3
+  workspace: oss-4tnzy
+test: ../test/images
+train: Hangul-3/train/images
+val: Hangul-3/valid/images
