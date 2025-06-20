@@ -42,8 +42,12 @@ function submitAnswer() {
       method: 'POST',
       body: formData
     })
-    .then(res => {
+    .then(async res => {
       console.log("📥 Response status:", res.status);
+      if (!res.ok) {
+        const errorText = await res.text();  // HTML 에러 본문
+        throw new Error(`❌ 서버 오류 ${res.status}:\n${errorText}`);
+      }
       return res.json();
     })
     .then(data => {
