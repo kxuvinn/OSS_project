@@ -16,8 +16,8 @@ from utils.general import non_max_suppression
 from utils.augmentations import letterbox
 
 # 모델 불러오기
-device = 'cpu'  # GPU 쓰려면 'cuda'
-model = DetectMultiBackend('model/korean_model.pt', device=device)
+device = 'cpu' 
+model = torch.jit.load('model/korean.pt', map_location=device)
 model.eval()
 
 model.names = [
@@ -55,17 +55,19 @@ def predict():
     # 이미지 디코딩
     img0 = cv2.imdecode(np.frombuffer(file.read(), np.uint8), cv2.IMREAD_COLOR)
 
-    # 전처리: resize + padding (letterbox)
-    img = letterbox(img0, new_shape=640)[0]
-    img = img.transpose((2, 0, 1))[::-1]  # BGR → RGB, HWC → CHW
+    # 해상도를 640x640으로 resize
+    img0 = cv2.resize(img0, (640, 640))
+
+    # 전처리: BGR → RGB, HWC → CHW
+    img = img0[:, :, ::-1].transpose(2, 0, 1)
     img = np.ascontiguousarray(img)
-    img = torch.from_numpy(img).to(device).float() / 255.0  # 0~1 정규화
+    img = torch.from_numpy(img).to(device).float() / 255.0
     if img.ndimension() == 3:
-        img = img.unsqueeze(0)  # batch dim 추가
+        img = img.unsqueeze(0)
 
     # 예측
-    pred = model(img, augment=False, visualize=False)
-    pred = non_max_suppression(pred)[0]
+    pred = model(img)
+    pred = non_max_suppression(pred, conf_thres=0.1)[0]
 
     if pred is not None and len(pred):
         pred = pred.cpu()
