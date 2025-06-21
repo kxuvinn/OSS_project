@@ -1,0 +1,21 @@
+names:
+- '10'
+- '2'
+- '3'
+- '4'
+- '5'
+- '6'
+- '7'
+- '8'
+- '9'
+- hand-numbers
+nc: 10
+roboflow:
+  license: CC BY 4.0
+  project: -6wldz
+  url: https://universe.roboflow.com/oss-4tnzy/-6wldz/dataset/2
+  version: 2
+  workspace: oss-4tnzy
+test: ../test/images
+train: Number-2/train/images
+val: Number-2/valid/images
