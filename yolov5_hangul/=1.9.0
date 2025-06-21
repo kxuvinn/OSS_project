@@ -1,4 +1,0 @@
-Requirement already satisfied: onnx in /usr/local/lib/python3.11/dist-packages (1.18.0)
-Requirement already satisfied: numpy>=1.22 in /usr/local/lib/python3.11/dist-packages (from onnx) (2.0.2)
-Requirement already satisfied: protobuf>=4.25.1 in /usr/local/lib/python3.11/dist-packages (from onnx) (5.29.5)
-Requirement already satisfied: typing_extensions>=4.7.1 in /usr/local/lib/python3.11/dist-packages (from onnx) (4.14.0)
