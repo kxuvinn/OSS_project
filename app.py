@@ -33,14 +33,14 @@ number_model = torch.jit.load('model/number.pt', map_location=device)
 number_model.eval()
 number_model.names = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
-# 📌 공통 전처리 함수 (640x640 고정)
+# 공통 전처리 함수
 def preprocess_image(file):
     img0 = cv2.imdecode(np.frombuffer(file.read(), np.uint8), cv2.IMREAD_COLOR)
     if img0 is None:
         raise ValueError("이미지를 불러오지 못했습니다.")
 
-    img = cv2.resize(img0, (640, 640))  # ✅ 해상도 고정
-    img = img[:, :, ::-1].transpose(2, 0, 1)  # BGR → RGB, HWC → CHW
+    img = cv2.resize(img0, (640, 640))
+    img = img[:, :, ::-1].transpose(2, 0, 1) 
     img = np.ascontiguousarray(img)
     img = torch.from_numpy(img).to(device).float() / 255.0
     if img.ndimension() == 3:
