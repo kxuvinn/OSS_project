@@ -74,10 +74,10 @@ Python 3.8 이상이 설치되어 있다면 바로 실행할 수 있습니다.
 
 ```bash
 # 가상환경 생성
-conda create -n signquiz-env python=3.8
+conda create -n (가상환경 이름) python=3.8
 
 # 가상환경 활성화
-conda activate signquiz-env
+conda activate (가상환경 이름)
 ```
 
 > 가상환경을 사용하지 않더라도, Python이 설치되어 있다면 전역 환경에서도 실행이 가능합니다.
