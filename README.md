@@ -17,66 +17,64 @@
 
 ## 프로젝트 설명
 
+
 ## 프로젝트 결과
 
-## 파일 구조
+
+## 파일별 설명 요약
+
+### signquiz
+
+- **frontend/**  
+  - `templates/` : 프로젝트 메인 페이지, 퀴즈 화면   
+  - `static/js/` : JavaScript 코드 (문제 제시, 웹캠 예측 처리 등)  
+  - `static/css/` : 퀴즈 페이지용 CSS 스타일 시트
+
+- **backend/**  
+  - `app.py` : Flask 서버 실행 파일
+  - `model/korean.pt` : 한글 수어 인식용 모델, 숫자 수어 인식용 모델  
+  - `yolov5/` : YOLOv5 추론 관련 내부 모듈 폴더
+
+- **requirements.txt**  
+  Python 패키지 의존성 목록 (Flask, torch, opencv-python 등 포함)
+
+---
+
+### yolov5_hangul
+
+- 한글 수어 인식 모델을 학습하기 위한 YOLOv5 학습 코드
+- `train.py`, `data.yaml`, `runs/` 등 학습 스크립트 및 결과 파일 포함
+
+---
+
+### yolov5_numbersign
+
+- 숫자 수어 인식 모델을 학습하기 위한 YOLOv5 학습 코드
+- `train.py`, `data.yaml`, `runs/` 등 숫자 기반 학습 구성 포함
+
 
 ## 설치 및 사용 방법
 
 ### 1. signquiz 폴더 다운로드
 
-이 프로젝트를 실행하려면 `signquiz/` 폴더만 필요합니다.
+이 프로젝트를 실행하려면 `signquiz/` 폴더만 필요
 
-1. 저장소 상단의 `Code` 버튼을 클릭한 후 `Download ZIP`을 선택합니다.  
-2. 압축을 해제한 뒤, `signquiz/` 폴더만 꺼내서 사용합니다.
+1. 저장소 상단의 `Code` 버튼을 클릭한 후 `Download ZIP`을 선택
+2. 압축을 해제한 뒤, `signquiz/` 폴더만 꺼내서 사용
 
 ---
 
 ### 2. Python 환경 준비
 
-Python 3.8 이상이 설치되어 있다면 바로 실행할 수 있습니다.  
-가상환경은 필수는 아니지만, 패키지 충돌을 방지하고 싶다면 사용하는 것을 권장합니다.
-
-#### (선택 사항) conda 가상환경 사용 방법
-
-```bash
-# 가상환경 생성
-conda create -n signquiz-env python=3.8
-
-# 가상환경 활성화
-conda activate signquiz-env
-```
-
-> 가상환경을 사용하지 않더라도, Python 3.8 이상이 설치되어 있다면 전역 환경에서도 실행이 가능합니다.
-
----
-
-### 3. 의존성 설치
-
-`signquiz/` 폴더 내에서 아래 명령어를 실행합니다.
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-### 4. 백엔드 서버 실행
-
-다음 명령어를 통해 Flask 서버를 실행합니다.
-
-```bash
-cd signquiz/backend
-python app.py
-```
-
-실행 후 브라우저에서 아래 주소로 접속하여 서비스를 이용할 수 있습니다:
+Python 3.8 이상이 설치되어 있다면 바로 실행 가능
+가상환경은 필수는 능:
 
 ```
 http://127.0.0.1:5000/
 ```
 
 ---
+
 
 ## 사용 툴
 
