@@ -58,17 +58,52 @@
 
 ### 1. signquiz 폴더 다운로드
 
-이 프로젝트를 실행하려면 `signquiz/` 폴더만 필요
+이 프로젝트를 실행하려면 `signquiz/` 폴더만 필요합니다.
 
-1. 저장소 상단의 `Code` 버튼을 클릭한 후 `Download ZIP`을 선택
-2. 압축을 해제한 뒤, `signquiz/` 폴더만 꺼내서 사용
+1. 저장소 상단의 `Code` 버튼을 클릭한 후 `Download ZIP`을 선택합니다.  
+2. 압축을 해제한 뒤, `signquiz/` 폴더만 꺼내서 사용합니다.
 
 ---
 
 ### 2. Python 환경 준비
 
-Python 3.8 이상이 설치되어 있다면 바로 실행 가능
-가상환경은 필수는 능:
+Python 3.8 이상이 설치되어 있다면 바로 실행할 수 있습니다.  
+가상환경은 필수는 아니지만, 패키지 충돌을 방지하고 싶다면 사용하는 것을 권장합니다.
+
+#### (선택 사항) conda 가상환경 사용 방법
+
+```bash
+# 가상환경 생성
+conda create -n signquiz-env python=3.8
+
+# 가상환경 활성화
+conda activate signquiz-env
+```
+
+> 가상환경을 사용하지 않더라도, Python이 설치되어 있다면 전역 환경에서도 실행이 가능합니다.
+
+---
+
+### 3. 의존성 설치
+
+`signquiz/` 폴더 내에서 아래 명령어를 실행합니다.
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### 4. 백엔드 서버 실행
+
+다음 명령어를 통해 Flask 서버를 실행합니다.
+
+```bash
+cd signquiz/backend
+python app.py
+```
+
+실행 후 브라우저에서 아래 주소로 접속하여 서비스를 이용할 수 있습니다:
 
 ```
 http://127.0.0.1:5000/
