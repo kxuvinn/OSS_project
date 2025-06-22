@@ -8,18 +8,18 @@
 ## 📁 프로젝트 구조
 
 ```plaintext
-├── app.py
-├── static/
-│   ├── js/
-│   │   ├── korean_quiz.js
-│   │   └── number_quiz.js
-│   └── css/
-│       └── style.css
-├── templates/
-│   ├── index.html
-│   ├── quiz_korean.html
-│   └── quiz_number.html
-
+app.py
+static/
+├── js/
+│   ├── korean_quiz.js
+│   └── number_quiz.js
+└── css/
+    └── style.css
+templates/
+├── index.html
+├── quiz_korean.html
+└── quiz_number.html
+```
 
 ---
 
