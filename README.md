@@ -52,7 +52,7 @@ backend/
 }
 ```
 
-콘솔 출력 예:
+### 콘솔 출력 예:
 ```
 [KOREAN] target: ㅂ | 예측 클래스: ㅂ | confidence: 0.870 | 매칭 결과: True
 ```
@@ -78,7 +78,7 @@ backend/
 }
 ```
 
-콘솔 출력 예:
+### 콘솔 출력 예:
 ```
 [NUMBER] target: 7 | 예측 클래스: 9 | confidence: 0.732 | 매칭: False
 ```
