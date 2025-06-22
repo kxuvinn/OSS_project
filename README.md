@@ -32,11 +32,11 @@
 
 - **backend/**  
   - `app.py` : Flask 서버 실행 파일
-  - `model/korean.pt` : 한글 수어 인식용 모델, 숫자 수어 인식용 모델  
+  - `model/` : 한글 수어 인식용 모델, 숫자 수어 인식용 모델  
   - `yolov5/` : YOLOv5 추론 관련 내부 모듈 폴더
 
 - **requirements.txt**  
-  Python 패키지 의존성 목록 (Flask, torch, opencv-python 등 포함)
+  Python 패키지 의존성 목록
 
 ---
 
